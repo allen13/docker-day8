@@ -17,6 +17,11 @@ spec:
       containers:
       - name: jaeger
         image: jaegertracing/all-in-one:latest
+        env:
+        - name: JAEGER_AGENT_HOST
+          value: jaeger-agent
+        - name: JAEGER_AGENT_PORT
+          value: '6831'
         ports:
         - name: agent
           containerPort: 6831

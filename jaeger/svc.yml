@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jaeger
+  name: jaeger-query
+spec:
+  ports:
+  - name: tcp-16686
+    port: 16686
+    protocol: TCP
+    targetPort: 16686
+  selector:
+    app: jaeger
+  sessionAffinity: None
+  type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jaeger
+  name: jaeger-agent
+spec:
+  ports:
+  - name: udp-6831
+    port: 6831
+    protocol: UDP
+    targetPort: 6831
+  selector:
+    app: jaeger
+  sessionAffinity: None
+  type: ClusterIP
+
